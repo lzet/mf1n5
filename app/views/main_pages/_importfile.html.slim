@@ -1,0 +1,12 @@
+hr
+h3= t('ui.label.title.importjson')
+- if current_user.defaultwallet
+  = form_for(:file, url: edit_path, method: :patch, accept: 'application/json') do |f|
+    .input-group
+      = f.file_field :importfile, class: 'form-control'
+      .input-group-btn
+        == render('common/selectwallet', currentwallet: current_user.defaultwallet, form: f)
+      .input-group-btn
+        = f.button icon_tag('ion-ios-upload-outline'), class: 'btn btn-default', id: 'waiting', data: { disable_with: icon_tag('ion-ios-upload')}
+- else
+  h4= t('messages.error.need_wallet')

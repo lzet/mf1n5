@@ -1,0 +1,5 @@
+- unless yield(:title).empty?
+  ol.breadcrumb
+    = yield(:subtitle2)
+    = yield(:subtitle)
+    li.active= yield(:title)

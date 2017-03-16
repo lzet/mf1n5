@@ -1,0 +1,32 @@
+a.click-to-show.list-group-item.list-group-item-info href='#'
+  = t('ui.label.title.period')
+.list-group-item.to-hide
+  - nowtimestr = current_user.curtime.strftime('%Y-%m-%d')
+  a.label.label-default href=paramslink('datestart': nowtimestr, 'dateend': nowtimestr)
+    = t('ui.period.day')
+  a.label.label-default href=paramslink('datestart': current_user.curtime.beginning_of_week.strftime('%Y-%m-%d'), 'dateend': nowtimestr)
+    = t('ui.period.thisweek')
+  a.label.label-default href=paramslink('datestart': current_user.curtime.last_week.beginning_of_week.strftime('%Y-%m-%d'), 'dateend': current_user.curtime.last_week.end_of_week.strftime('%Y-%m-%d'))
+    = t('ui.period.lastweek')
+  a.label.label-default href=paramslink('datestart': current_user.curtime.beginning_of_month.strftime('%Y-%m-%d'), 'dateend': nowtimestr)
+    = t('ui.period.thismonth')
+  a.label.label-default href=paramslink('datestart': current_user.curtime.last_month.beginning_of_month.strftime('%Y-%m-%d'), 'dateend': current_user.curtime.last_month.end_of_month.strftime('%Y-%m-%d'))
+    = t('ui.period.lastmonth')
+
+  a.label.label-default href=paramslink('datestart': current_user.curtime.beginning_of_year.strftime('%Y-%m-%d'), 'dateend': nowtimestr)
+    = t('ui.period.thisyear')
+  a.label.label-default href=paramslink('datestart': current_user.curtime.last_year.beginning_of_year.strftime('%Y-%m-%d'), 'dateend': current_user.curtime.last_year.end_of_year.strftime('%Y-%m-%d'))
+    = t('ui.period.lastyear')
+
+
+.list-group-item.to-hide
+  = form_tag('', url: root_path, method: :get, enforce_utf8: false) do |f|
+    .input-group
+      = text_field_tag :datestart, '', class: 'form-control', 'data-provide': 'datepicker', id: 'calendar_p1', required: true
+      = text_field_tag :dateend, '', class: 'form-control', 'data-provide': 'datepicker', id: 'calendar_p2', required: true
+      - MainPagesHelper::getcurrentfilter(params, [:datestart, :dateend]).each do |k, v|
+        = hidden_field_tag k, v
+    = button_tag class: 'btn form-control', name: nil do
+      = icon_tag('ion-calendar')
+      = " #{t('ui.button.title.find')}"
+

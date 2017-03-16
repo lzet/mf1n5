@@ -1,0 +1,32 @@
+= form_for @item do |f|
+  = error_messages!(@item)
+  /p
+    = @item.to_s
+  .form-group
+    = f.text_field :name, class: 'form-control', placeholder: t('ui.label.title.name'), autofocus: true
+  .form-group
+    = f.text_field :tags_s, class: 'form-control', placeholder: t('ui.label.title.tags')
+    - if current_user.tags_count > 0
+      - current_user.tags.each do |t|
+        span.label style="background-color: #{t.color}"
+          = link_to t.name, "#", onclick: "add_tag($(this)); return false;"
+  = f.text_field :valueabs, pattern: '^\d+([,.]\d{1,2})?$', class: 'form-control', placeholder: t('ui.label.title.price')
+  .input-group
+    .input-group-btn
+      = f.text_field :date, class: 'form-control', 'data-provide': 'datepicker', id: 'calendar'
+    .input-group-btn
+      = f.text_field :time, class: 'form-control'
+    == render('common/selectwallet', currentwallet: @item.wallet, form: f) 
+  .form-group
+    .radio
+      = f.label :in, style: 'color: green', class: 'radio-inline' do
+        = f.radio_button :checkbox, :in
+        = t('ui.label.title.benefit')
+      = f.label :out, style: 'color: red', class: 'radio-inline' do
+        = f.radio_button :checkbox, :out
+        = t('ui.label.title.expense')
+  .form-group
+    == yield f
+    = link_to t('ui.button.title.cancel'), root_path, class: 'btn btn-default btn-space'
+
+

@@ -1,0 +1,33 @@
+- if @pagecnt > 0
+  ul.pagination.pagination-sm
+    - firstel = @pagecur - 5 >= 0 ? true : false
+    - lastel = @pagecur + 5 <= @pagecnt ? true : false
+    - left = firstel ? -2 : -4
+    - right = lastel ? 2 : 4
+    - if left+@pagecur < 0
+      - right -= left+@pagecur; left = -@pagecur;
+    - elsif right+@pagecur > @pagecnt
+      - left -= right+@pagecur-@pagecnt; right = @pagecnt-@pagecur; left = -@pagecur if left+@pagecur < 0;
+
+
+    - if firstel
+      li
+        a href=paramslink('page': '0')
+          = "#{1}"
+      li.disabled
+        a ...
+
+
+    - (left..right).each do |i|
+      - curi = i+@pagecur; break if curi > @pagecnt
+      li class=(curi == @pagecur ? 'active' : '')
+        a href=paramslink('page': curi.to_s)
+          = "#{curi+1}"
+
+
+    - if lastel
+      li.disabled
+        a ...
+      li
+        a href=paramslink('page': @pagecnt.to_s)
+          = "#{@pagecnt+1}"

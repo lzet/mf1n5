@@ -1,0 +1,46 @@
+- filters = MainPagesHelper::getcurrentfilter(params, [:datestart, :dateend])
+- if !filters.empty? || (params[:datestart] && params[:dateend])
+  br/
+  .list-group-item.list-group-item-info
+    = t('ui.label.title.filters')
+- filters.each do |k, val|
+  - case k
+    - when 'tag'
+      .list-group-item
+        = "#{t('ui.label.title.tags')} :" 
+        - current_user.tags.find(MainPagesHelper::paramarray(val)).each do |tag|
+          span.label style="background-color: #{tag.color}"
+            a href=paramslink('tag': tag.id.to_s, remove: true)
+              = tag.name
+              span &times;
+    - when 'wallet'
+      .list-group-item
+        = "#{t('ui.label.title.wallets')} :" 
+        - current_user.wallets.find(MainPagesHelper::paramarray(val)).each do |wlt|
+          span.label.label-default
+            a href=paramslink('wallet': wlt.id.to_s, remove: true)
+              = wlt.name
+              span &times;
+    - when 'dir'
+      .list-group-item
+        = "#{t('ui.label.title.directions')} :" 
+        - val.split('|').each do |d|
+          span class = "label label-#{d=='0' ? 'success' : 'danger'}"
+            a href=paramslink('dir': d, remove: true)
+              = d == '0' ? t('ui.label.title.benefit') : t('ui.label.title.expense')
+              span &times;
+    - when 'search'
+      .list-group-item
+        = "#{t('ui.label.title.search')} :" 
+        span.label.label-default
+          a href=paramslink('search': val, remove: true, forceremove: true)
+            = val
+            span &times;
+- if params[:datestart] && params[:dateend]
+  .list-group-item
+    = "#{t('ui.label.title.dates')} :" 
+    span.label.label-default
+      a href=paramslink('datestart': '', 'dateend': '', remove: true, forceremove: true)
+        = "#{params[:datestart]} / #{params[:dateend]}";
+        span &times;
+

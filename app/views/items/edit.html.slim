@@ -1,0 +1,5 @@
+- provide(:title, t('ui.page.title.edititem'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.home'), root_path))
+= render 'form' do |f|
+  = f.submit t('ui.button.title.update'), class: 'btn btn-default btn-space'
+  = link_to t('ui.button.title.delete'), item_path(@item), class: 'btn btn-default btn-space', method: :delete

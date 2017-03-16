@@ -1,0 +1,43 @@
+- provide(:title, '')
+- if @total && !@total.empty?
+  - @total.each do |w, t|
+    - l = paramslink('wallet': w.id.to_s, path: gajax_path)
+    = link_to l, class: 'btn hovericon', onclick: "getgraph(\"#{l}\"); return false;" do
+      = w.name
+      i.icon.ion-stats-bars
+      span.label.label-default= w.currency
+      div class=(t < 0 ? 'text-danger' : 'text-success')
+        = t
+- unless @total && @total.length == 1
+  - l = paramslink(path: gajax_path)
+  = link_to l, class: 'btn', onclick: "getgraph(\"#{l}\"); return false;" do
+    i.icon.ion-stats-bars style='font-size: 2.2em; color: blue;'
+#graphdiv
+= link_to icon_tag('ion-plus'), new_item_path, class: 'font-icon'
+== render 'pagination'
+table.table
+  tbody.table-striped.table-bordered
+    - @items.each do |item|
+      tr
+        td.text-info
+          span.badge.label
+            a href=paramslink('wallet': item.wallet.id.to_s, add: true)
+              = item.wallet.name
+          = link_to(item.name, ajax_item_path(item), onclick: "getiteminfo($(this),\"#{ajax_item_path(item)}\", \"#{item.id}\"); return false;")
+          .modalhtml
+        td.col-md-4
+          .mobilehide
+            - item.tags.each do |t|
+              span.label style="background-color: #{t.color}"
+                a href=paramslink('tag': t.id.to_s, add: true)
+                  = t.name
+        - if item.value < 0
+          td.col-md-1.text-danger= item.valueabs
+        - else
+          td.col-md-1.text-success= item.valueabs
+        td.col-md-1
+          .mobilehide= item.date_s
+        td style='width: 10px;'
+          = link_to(icon_tag('ion-edit'), edit_item_path(item))
+
+== render 'pagination'

@@ -1,0 +1,48 @@
+= link_to image_tag('coinlogo.png'), root_path
+- if user_signed_in?
+  .list-group
+    == render 'main_pages/filter'
+  .list-group
+    a.click-to-show.list-group-item.list-group-item-info href='#'
+      = t('ui.label.title.wallets')
+      span.badge
+        = current_user.wallets_count
+    - if current_user.wallets_count > 0
+      - current_user.wallets.each do |w|
+        a.list-group-item.to-hide href=paramslink('wallet': w.id.to_s, add: true) style='display: block;'
+          = w.name
+          span.badge
+            = w.currency
+          span.badge
+            = w.value/100.0
+
+    br/
+    a.click-to-show.list-group-item.list-group-item-info href='#'
+      = t('ui.label.title.tags')
+      span.badge
+        = current_user.tags_count
+    - if current_user.tags_count > 0
+      .list-group-item.to-hide
+        - current_user.tags.each do |t|
+          span.label style="background-color: #{t.color}"
+            a href=paramslink('tag': t.id.to_s, add: true)
+              = t.name
+    br/
+    a.click-to-show.list-group-item.list-group-item-info href='#'
+      = t('ui.label.title.directions')
+      a.list-group-item.to-hide href=paramslink('dir': '0', add: true) style='color: green'
+        = t('ui.label.title.benefit')
+      a.list-group-item.to-hide href=paramslink('dir': '1', add: true) style='color: red'
+        = t('ui.label.title.expense')
+    br/
+    == render 'main_pages/period_side'
+    br/
+    .list-group
+      = form_tag('', url: root_path, class: 'form-inline list-group-item', method: :get, enforce_utf8: false, style: {margin: :auto}) do |f|
+        .form-group
+          = label_tag :search, '', class: 'sr-only'
+          = text_field_tag :search, params[:search], class: 'form-control', required: true
+          - MainPagesHelper::getcurrentfilter(params, [:search]).each do |k, v|
+            = hidden_field_tag k, v
+        = button_tag icon_tag('ion-ios-search-strong'), class: 'form-control', name: nil
+

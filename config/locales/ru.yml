@@ -1,0 +1,88 @@
+ru:
+  mf1n5_title: 'Моя Бухгалтерия'
+  messages:
+    success:
+      update: 'Успешно обновлено'
+      delete: 'Успешно удалено'
+      create: 'Успешно создано'
+    error:
+      incompatible_version: 'Ошибка импорта: несовместимая версия'
+      incompatible_format: 'Ошибка импорта: несовместимый формат'
+      not_found: 'Не найдено'
+      need_wallet: 'Необходим хотя бы один кошелек'
+      update: 'Ошибка обновления'
+  ui:
+    graph:
+      title:
+        yearly: 'Ежегодовой'
+        monthly: 'Ежемесячный'
+        daily: 'Ежедневный'
+    button:
+      title:
+        update: 'Обновить'
+        create: 'Создать'
+        delete: 'Удалить'
+        cancel: 'Отменить'
+        close: 'Закрыть'
+        add: 'Добавить'
+        find: 'Найти'
+        login: 'Войти'
+    label:
+      title:
+        tagname: 'Имя тега'
+        setdefault: 'Установить основным'
+        wallet: 'Кошелек'
+        wallets: 'Кошельки'
+        directions: 'Движение'
+        tag: 'Тег'
+        tags: 'Теги'
+        amount: 'Сумма'
+        datetime: 'Дата'
+        name: 'Имя'
+        price: 'Цена'
+        benefit: 'доход'
+        expense: 'расход'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+        importjson: 'Импортировать JSON файл (совместим с версией 1)'
+        period: 'Период'
+        filters: 'Фильтры'
+        search: 'Поиск'
+        dates: 'Даты'
+        language: 'Язык'
+        remember_me: 'Запомнить меня'
+        login: 'Вход'
+        date_format: 'Формат даты'
+        timezone: 'Часовой пояс'
+    period:
+      day: 'день'
+      thisweek: 'текущая неделя'
+      lastweek: 'прошлая неделя'
+      thismonth: 'текущий месяц'
+      lastmonth: 'прошлый месяц'
+      thisyear: 'текущий год'
+      lastyear: 'прошлый год'
+    menu:
+      title:
+        settings: 'Настройки'
+        administration: 'Администрирование'
+        signout: 'Выход'
+    page:
+      title:
+        editwallet: 'Редактирование кошелька'
+        edittag: 'Редактирование тега'
+        edititem: 'Редактирование записи'
+        edit: 'Настройки'
+        home: 'Главная'
+        newitem: 'Новая запись'
+        infoitem: 'Информация о записи'
+        graph: 'Графики'
+        administration: 'Администрирование'
+        newuser: 'Новый пользователь'
+        edituser: 'Редактирование пользователя'
+    input:
+      title:
+        namewallet: 'Имя кошелька'
+        nametag: 'Имя тега'
+      hint:
+        currencywallet: 'РУБ или БАКС...'

@@ -1,0 +1,30 @@
+FROM ruby:2.3-slim
+LABEL maintainer="lzet.name"
+LABEL description="My Finance System"
+LABEL version="1.0"
+
+WORKDIR /usr/src
+
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs libsqlite3-dev
+
+COPY . /usr/src/
+COPY Gemfile.postgres /usr/src/Gemfile
+COPY config/database.postgres.yml /usr/src/config/database.yml
+RUN bundle install
+
+ENV RAILS_ENV=production
+ENV SECRET_KEY_BASE=7b0c49b5827736876e8553cb7c93aba5396d524525797a1650383e108dd50b536e68798eb3f594818ab5686d6a55d774db00e0ab171e6ab3478f1ff3a2d67db0
+ENV POSTGRESQL_DATABASE=mf1n5
+ENV POSTGRESQL_USERNAME=mf1n5
+ENV POSTGRESQL_PASSWORD=mf1n5password
+ENV POSTGRESQL_ADDRESS=192.168.0.100
+ENV PORT=3001
+
+ENV RAILS_SERVE_STATIC_FILES=true
+
+RUN bundle exec rails assets:precompile
+
+CMD ./startserver.sh
+
+EXPOSE 3001
+

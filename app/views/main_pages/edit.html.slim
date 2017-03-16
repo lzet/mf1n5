@@ -1,0 +1,9 @@
+- provide(:title,t('ui.page.title.edit'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.home'), root_path))
+#loading style='display:none; position: fixed; z-index: 1000; top: 50%; left: 50%;'
+  p
+    = image_tag('loading.gif')
+== render 'passwordtimezone'
+== render 'importfile'
+== render 'listwallets'
+== render 'listtags'

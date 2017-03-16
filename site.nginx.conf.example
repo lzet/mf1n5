@@ -1,0 +1,28 @@
+server {
+	listen 80;
+	listen [::]:80;
+	server_name mf1n5.examle.com www.mf1n5.example.com;
+	
+	client_max_body_size 200m;
+  gzip on;
+  gzip_disable "msie6";
+  gzip_comp_level 6;
+  gzip_min_length 1100;
+  gzip_buffers 16 8k;
+  gzip_proxied any;
+  gzip_types text/plain application/xml text/css text/js text/xml application/x-javascript text/javascript application/javascript application/json application/xml+rss;
+
+	location / {
+		proxy_pass http://host:3001;
+		proxy_next_upstream error timeout invalid_header http_500 http_503;
+		proxy_set_header   Host             $host;
+		proxy_set_header    X-Real-IP       $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_redirect off;
+		proxy_connect_timeout 1200;
+		expires off;
+	}
+
+}
+

@@ -1,0 +1,37 @@
+- provide(:version, '0.1')
+doctype html
+html lang=I18n.locale
+  head
+    title= "#{t('mf1n5_title')} #{yield(:version)}"
+    == csrf_meta_tags
+
+    == stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    == javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    /[if lt IE 9]
+      script src='/assets/html5shiv.min.js'
+
+    meta name='viewport' content='width=device-width, initial-scale=1'
+    == favicon_link_tag 'favicon.png'
+  body
+    .mobilehide#noticebar
+      - flash.each do |mtype, msg|
+        - mtype = 'info' if mtype == 'notice'; mtype = 'danger' if mtype == 'alert';
+        div class="alert alert-#{mtype} alert-dismissable"
+          button.close*{'type'=>'button', 'data-dismiss'=>'alert', 'aria-hidden'=>'true'} &times;
+          = msg
+    #main
+      == render 'main_pages/header'
+      #cellarea
+        .mobilehide#sidearea
+          == render 'main_pages/side'
+        #mainarea
+          == render 'main_pages/breadcrumb'
+          = yield
+      footer
+        ul
+          li
+            = "@ #{Time.now.year}"
+          li 
+            => icon_tag('ion-social-github')
+            src= link_to 'mf1n5', 'https://github.com/lzet/mf1n5', class: 'links'
+      /== debug(params)

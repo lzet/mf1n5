@@ -1,0 +1,9 @@
+.input-group-btn#currency
+  = form.button class: 'btn btn-default form-control dropdown-toggle ptext', 'data-toggle': 'dropdown' do
+    = currentwallet.name
+    span.caret
+  = form.hidden_field :wallet_id, value: currentwallet.id, class: 'pvalue'
+  ul.dropdown-menu.pull-right
+    - current_user.wallets.each do |w|
+      li
+        = link_to w.name, '#', onclick: "change_id_text(\"#currency\",$(this),#{w.id});closeClass(\"#currency\"); return false;", class: 'btn'

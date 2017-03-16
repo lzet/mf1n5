@@ -1,0 +1,21 @@
+strong.center= @item.name
+dl.dl-horizontal
+  dt
+    = "#{t('ui.label.title.wallet')}: "
+  dd
+    = @item.wallet.name
+    span.label.label-default= @item.wallet.currency
+  dt
+    = "#{t('ui.label.title.tags')}: "
+  dd
+    - @item.tags.each do |t|
+      span.label style="background-color: #{t.color}"
+        = t.name
+  dt
+    = "#{t('ui.label.title.amount')}: "
+  dd
+    = @item.value/100.0
+  dt
+    = "#{t('ui.label.title.datetime')}: "
+  dd
+    = "#{@item.user.localtimezone.utc_to_local(@item.created_at).strftime('%Y-%m-%d %H:%M')} #{@item.user.localtimezone.name}"

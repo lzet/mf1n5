@@ -1,0 +1,4 @@
+- provide(:title, t('ui.page.title.newitem'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.home'), root_path))
+h3= t('messages.error.need_wallet')
+= link_to t('ui.button.title.create'), edit_path, class: 'btn btn-default btn-space'

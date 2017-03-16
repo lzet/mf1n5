@@ -1,0 +1,18 @@
+- provide(:title, t('ui.page.title.editwallet'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.edit'), edit_path))
+- provide(:subtitle2, getsubtitle(t('ui.page.title.home'), root_path))
+= form_for(@wallet) do |f|
+  = error_messages!(@wallet)
+  .form-group
+    = f.label :name, t('ui.input.title.namewallet')
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :currency, t('ui.input.hint.currencywallet')
+    = f.text_field :currency, class: 'form-control'
+  .checkbox
+    = f.label :def do
+      = f.check_box :def
+      = t('ui.label.title.setdefault')
+  = f.button t('ui.button.title.update'), class: 'btn btn-default btn-space'
+  = link_to t('ui.button.title.cancel'), edit_path, class: 'btn btn-default btn-space'
+

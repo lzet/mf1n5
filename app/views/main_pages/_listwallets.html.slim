@@ -1,0 +1,27 @@
+hr
+h3= t('ui.label.title.wallets')
+table.table
+  tbody.table-striped.table-bordered
+    - current_user.wallets.each do |wallet|
+      tr
+        td
+          = wallet.name
+          span.badge.right
+            = wallet.currency
+        td.col-md-1 style='width: 10px;'
+          = link_to( icon_tag('ion-refresh'), wallet_path(wallet), :method => 'patch')
+        td.col-md-1 style='width: 10px;'
+          = link_to( icon_tag('ion-edit'), wallet_path(wallet))
+        td.col-md-1 style='width: 10px;'
+          = link_to( icon_tag('ion-trash-a'), wallet_path(wallet), :method => 'delete')
+
+= form_for(@wallet, url: edit_path, html: { class: 'form-inline'}) do |f|
+  = error_messages!(@wallet)
+  .form-group
+    = f.label :name, t('ui.input.title.namewallet'), class: 'sr-only'
+    = f.text_field :name, class: 'form-control', placeholder: t('ui.input.title.namewallet')
+  .form-group
+    = f.label :currency, t('ui.input.hint.currencywallet'), class: 'sr-only'
+    = f.text_field :currency, class: 'form-control', placeholder: t('ui.input.hint.currencywallet')
+  = f.button icon_tag('ion-plus'), class: 'btn btn-default'
+

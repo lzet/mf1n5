@@ -1,0 +1,15 @@
+- if params[:nofull]
+  .modal.fade id="graph" role='dialog'
+    .modal-dialog
+      .modal-content
+        .modal-header
+          == button_tag class: 'close', 'data-dismiss': 'modal', 'aria-label': t('ui.button.title.close') do
+            span aria-hidden='true' &times;
+        .modal-body
+          == render 'graphdata'
+        .modal-footer
+          == button_tag t('ui.button.title.close'), class: 'btn btn-default', 'data-dismiss': 'modal'
+- else
+  - provide(:title, t('ui.page.title.graph'))
+  - provide(:subtitle, getsubtitle(t('ui.page.title.home'), root_path))
+  == render 'graphdata'

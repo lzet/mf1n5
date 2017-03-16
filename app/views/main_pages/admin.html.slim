@@ -1,0 +1,21 @@
+- provide(:title, t('ui.page.title.administration'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.home'), root_path))
+table.table
+  tbody.table-striped.table-bordered
+    tr
+      th e-mail
+      th= icon_tag('ion-edit')
+      th= icon_tag('ion-trash-a')
+    - User.all.each do |user|
+      tr
+        td #{user.email}
+        - if user.admin?
+          td= icon_tag('ion-minus-round')
+          td= icon_tag('ion-minus-round')
+        - else
+          td= link_to( icon_tag('ion-edit'), administrate_edit_path(id: user.id), :id => 'editbtn')
+          td= link_to( icon_tag('ion-trash-a'), administrate_path(id: user.id), :method => 'delete')
+  tr
+    td
+    td
+    td= link_to( icon_tag('ion-plus'), administrate_new_path)

@@ -1,0 +1,25 @@
+hr
+h3= t('ui.label.title.tags')
+table.table
+  tbody.table-striped.table-bordered
+    - current_user.tags.each do |tg|
+      tr
+        td
+          = tg.name
+        td.col-md-1
+          .btn.btn-default style= "background-color: #{tg.color}"
+        td.col-md-1 style='width: 10px;'
+          = link_to( icon_tag('ion-edit'), tag_path(tg))
+        td.col-md-1 style='width: 10px;'
+          = link_to( icon_tag('ion-trash-a'), tag_path(tg), :method => 'delete')
+
+= form_for(@tag, url: edit_path, html: { class: 'form-inline'}) do |f|
+  = error_messages!(@tag)
+  .form-group
+    = f.label :name, t('ui.input.title.nametag'), class: 'sr-only'
+    = f.text_field :name, class: 'form-control', placeholder: t('ui.input.title.nametag')
+  .form-group
+    = f.button type: 'button', class: 'btn btn-default', style: "background-color: #{@tag.color}", onclick: 'randcolor()', id: 'view_color' do
+      i.icon.ion-paintbucket onclick='randcolor()'
+    = f.hidden_field :color, class: 'form-control'
+  = f.button icon_tag('ion-plus'), class: 'btn btn-default'

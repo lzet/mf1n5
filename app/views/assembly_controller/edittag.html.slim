@@ -1,0 +1,16 @@
+- provide(:title, t('ui.page.title.edittag'))
+- provide(:subtitle, getsubtitle(t('ui.page.title.edit'), edit_path))
+- provide(:subtitle2, getsubtitle(t('ui.page.title.home'), root_path))
+= form_for(@tag) do |f|
+  = error_messages!(@tag)
+  .form-group
+    = f.label :name, t('ui.label.title.tagname'), class: 'sr-only'
+    = f.text_field :name, class: 'form-control', placeholder: t('ui.label.title.tagname')
+  .form-group#colorchange
+    = link_to icon_tag('ion-paintbucket'), '#', class: 'btn btn-default click-to-show', style: "background-color: #{@tag.color}", id: 'colorbtn'
+    = f.hidden_field :color, class: 'form-control pvalue'
+    .to-hide
+      - AssemblyControllerHelper::COLORS_TEMPLATE.each do |name, val|
+        = link_to '', '#', class: 'btn btn-default', style: "background-color: #{val}", onclick: "change_id_text(\"#colorchange\",$(this),\"#{val}\"); closeButton(\"#colorchange\");$(\"#colorbtn\").css(\"background-color\", \"#{val}\"); return false;", title: name
+  = f.button t('ui.button.title.update'), class: 'btn btn-default btn-space'
+  = link_to t('ui.button.title.cancel'), edit_path, class: 'btn btn-default btn-space'

@@ -1,0 +1,14 @@
+strong.center= @title
+.list-group
+  = line_chart @grapharray
+- @grapharray.each do |wallets|
+  .list-group
+    a.click-to-show.list-group-item.list-group-item-info href='#'
+      strong.center= wallets[:name]
+    .list-group-item.to-hide
+      table.table.table-hover
+        - wallets[:data].each do |dt, val|
+          tr
+            td.col-xs-6.col-md-4= dt
+            td class="col-xs-12 col-md-8 #{(val<0) ? 'danger' : 'success'}"
+              = val.round 3
