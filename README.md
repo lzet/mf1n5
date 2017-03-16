@@ -1,6 +1,6 @@
 ## My Finance System
 
-Free, open-source, easy-to-use personal finance web application.
+Free, open-source, easy-to-use personal finance web application.  
 It's remake [MyFin v1](https://bitbucket.org/Pozadi/myfin/wiki/Home) application on ROR with PostgreSQL support.
 
 #### To-do
@@ -45,8 +45,8 @@ MF1n5 is released under the MIT license (LICENSE file).
 
 #### Demo
 
-[MF1n5 Demo](http://dev.lzet.name/mf1n5)
-login: demo@dev.lzet.name
+[MF1n5 Demo](http://dev.lzet.name/mf1n5)  
+login: demo@dev.lzet.name  
 password: demoguest
 
 #### Donate
@@ -59,7 +59,7 @@ password: demoguest
 
 ## Моя бухгалтерия
 
-Свободное программное обеспечение, простое в использовании и установке веб-приложение.
+Свободное программное обеспечение, простое в использовании и установке веб-приложение.  
 Это приложение создано по мотивам [MyFin v1](https://bitbucket.org/Pozadi/myfin/wiki/Home), с использованием ROR и с поддержкой SQLite и PostgreSQL.
 
 #### В планах добавить
@@ -104,8 +104,8 @@ password: demoguest
 
 #### Демо
 
-[MF1n5 Демо](http://dev.lzet.name/mf1n5)
-login: demo@dev.lzet.name
+[MF1n5 Демо](http://dev.lzet.name/mf1n5)  
+login: demo@dev.lzet.name  
 password: demoguest
 
 #### Пожертвование
