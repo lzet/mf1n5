@@ -1,17 +1,20 @@
 - provide(:title, '')
-- if @total && !@total.empty?
-  - @total.each do |w, t|
-    - l = paramslink('wallet': w.id.to_s, path: gajax_path)
-    = link_to l, class: 'btn hovericon', onclick: "getgraph(\"#{l}\"); return false;" do
-      = w.name
-      i.icon.ion-stats-bars
-      span.label.label-default= w.currency
-      div class=(t < 0 ? 'text-danger' : 'text-success')
-        = t
-- unless @total && @total.length == 1
-  - l = paramslink(path: gajax_path)
-  = link_to l, class: 'btn', onclick: "getgraph(\"#{l}\"); return false;" do
-    i.icon.ion-stats-bars style='font-size: 2.2em; color: blue;'
+div
+  = link_to paramslink(), method: :post, class: 'btn font-icon', title: t('ui.button.hint.export') do
+    i.icon.ion-ios-download-outline
+  - if @total && !@total.empty?
+    - @total.each do |w, t|
+      - l = paramslink('wallet': w.id.to_s, path: gajax_path)
+      = link_to l, class: 'btn hovericon', onclick: "getgraph(\"#{l}\"); return false;" do
+        = w.name
+        i.icon.ion-stats-bars
+        span.label.label-default= w.currency
+        div class=(t < 0 ? 'text-danger' : 'text-success')
+          = t
+  - unless @total && @total.length == 1
+    - l = paramslink(path: gajax_path)
+    = link_to l, class: 'btn', onclick: "getgraph(\"#{l}\"); return false;" do
+      i.icon.ion-stats-bars style='font-size: 2.2em; color: blue;'
 #graphdiv
 = link_to icon_tag('ion-plus'), new_item_path, class: 'font-icon'
 == render 'pagination'

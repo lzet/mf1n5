@@ -27,6 +27,8 @@ ru:
         add: 'Добавить'
         find: 'Найти'
         login: 'Войти'
+      hint:
+        export: 'Экспорт с учетом фильтров'
     label:
       title:
         tagname: 'Имя тега'

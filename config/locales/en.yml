@@ -47,6 +47,8 @@ en:
         add: 'Add'
         find: 'Find'
         login: 'Log In'
+      hint:
+        export: 'Export with filter included'
     label:
       title:
         tagname: 'Tag Name'

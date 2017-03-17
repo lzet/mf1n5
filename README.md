@@ -5,7 +5,6 @@ It's remake [MyFin v1](https://bitbucket.org/Pozadi/myfin/wiki/Home) application
 
 #### To-do
 
-- [ ] Import/Export
 - [ ] Regular payments
 
 #### Installation
@@ -64,7 +63,6 @@ password: demoguest
 
 #### В планах добавить
 
-- [ ] Импорт/Экспорт
 - [ ] Регулярные платежи
 
 #### Установка
@@ -100,13 +98,13 @@ password: demoguest
 
 #### Лицензия
 
-МИТ лицензия (файд LICENSE).
+МИТ лицензия (файл LICENSE).
 
 #### Демо
 
 [MF1n5 Демо](http://dev.lzet.name/mf1n5)  
-login: demo@dev.lzet.name  
-password: demoguest
+логин: demo@dev.lzet.name  
+пароль: demoguest
 
 #### Пожертвование
 

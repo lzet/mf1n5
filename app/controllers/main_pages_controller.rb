@@ -77,6 +77,15 @@ class MainPagesController < ApplicationController
     render :edit
   end
 
+  def export
+    @items = current_user.items.getpagewithfilters(current_user, MainPagesHelper::getcurrentfilter(params))[0]
+    data = []
+    @items.each do |it|
+      data << {name: it.name, value: it.value, wallet: it.wallet.name, wcurrency: it.wallet.currency, date: it.created_at, tags: it.tags_s} 
+    end
+    send_data({version: 15, data: data}.to_json, filename: "#{Time.now.strftime('%Y%m%d-%H%M%S')}.json", type: 'application/json')
+  end
+
   def importfile
     if params[:file]
       rfile = params[:file][:importfile]
@@ -95,6 +104,21 @@ class MainPagesController < ApplicationController
                 it.value = -it.value
               end
               it.created_at = current_user.localtimezone.local_to_utc Time.strptime("#{item['date']} +0000", "%Y-%m-%d %H:%M:%S %z")
+              it.tags = gettags(item['tags'], current_user)
+              unless it.save
+                errors << it.errors
+              end
+            end
+            redirect_to root_path
+            return
+          elsif imp['version'] === 15
+            imp['data'].each do |item|
+              wimport = current_user.wallets.find_by(name: item['wallet'], currency: item['wcurrency'])
+              wimport ||= Wallet.new(user: current_user, name: item['wallet'], currency: item['wcurrency'])
+              it = Item.new(user: current_user, wallet: wimport)
+              it.name = item['name']
+              it.value = item['value']
+              it.created_at = item['date']
               it.tags = gettags(item['tags'], current_user)
               unless it.save
                 errors << it.errors
