@@ -37,6 +37,8 @@ It's remake [MyFin v1](https://bitbucket.org/Pozadi/myfin/wiki/Home) application
   ```
   docker start mf1n5containerdemo
   ```
+- login with admin@admin and adminpassword
+- change password and settings
 
 #### License
 
@@ -95,6 +97,8 @@ password: demoguest
   ```
   docker start mf1n5containerdemo
   ```
+- зайти в систему логином admin@admin и паролем adminpassword
+- сменить пароль и настроить по желанию
 
 #### Лицензия
 
