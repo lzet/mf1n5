@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_many :items, dependent: :destroy
 
+  def sortedtags
+    tags.sort {|a,b| a.name <=> b.name}
+  end
+
   def admin?
     email == 'admin@admin'
   end

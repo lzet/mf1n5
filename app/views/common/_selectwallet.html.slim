@@ -1,5 +1,5 @@
 .input-group-btn#currency
-  = form.button class: 'btn btn-default form-control dropdown-toggle ptext', 'data-toggle': 'dropdown' do
+  = form.button type: 'button', class: 'btn btn-default form-control dropdown-toggle ptext', 'data-toggle': 'dropdown' do
     = currentwallet.name
     span.caret
   = form.hidden_field :wallet_id, value: currentwallet.id, class: 'pvalue'

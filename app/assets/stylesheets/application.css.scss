@@ -114,8 +114,9 @@ body {
   margin: 2px;
   a {
     color: black;
-    opacity: 0.50;
+    opacity: 0.80;
     text-decoration: none;
+    text-shadow: 0 1px white, 1px 0 white, 0 -1px white, -1px 0 white, 1px 1px white, -1px -1px white;
   }
 }
 .font-icon {
