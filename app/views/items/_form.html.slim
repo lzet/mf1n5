@@ -8,7 +8,7 @@
     = f.text_field :tags_s, class: 'form-control', placeholder: t('ui.label.title.tags')
     - if current_user.tags_count > 0
       - current_user.sortedtags.each do |t|
-        span.label style="background-color: #{t.color}"
+        span.label style="border-color: #{t.color}"
           = link_to t.name, "#", onclick: "add_tag($(this)); return false;"
   = f.text_field :valueabs, pattern: '^\d+([,.]\d{1,2})?$', class: 'form-control', placeholder: t('ui.label.title.price')
   .input-group

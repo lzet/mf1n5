@@ -8,9 +8,11 @@ div
       = link_to l, class: 'btn hovericon', onclick: "getgraph(\"#{l}\"); return false;" do
         = w.name
         i.icon.ion-stats-bars
-        span.label.label-default= w.currency
-        div class=(t < 0 ? 'text-danger' : 'text-success')
-          = t
+        span.label.label-default.noborder= w.currency
+        div class="totaltxt-sm #{(t[0] < 0 ? 'text-danger' : 'text-success')}"
+          = t[0]
+        div class="totaltxt-sm #{(t[1] < 0 ? 'text-danger' : 'text-success')}"
+          = t[1]
   - unless @total && @total.length == 1
     - l = paramslink(path: gajax_path)
     = link_to l, class: 'btn', onclick: "getgraph(\"#{l}\"); return false;" do
@@ -23,15 +25,15 @@ table.table
     - @items.each do |item|
       tr
         td.text-info
-          span.badge.label
+          span.badge
             a href=paramslink('wallet': item.wallet.id.to_s, add: true)
               = item.wallet.name
-          = link_to(item.name, ajax_item_path(item), onclick: "getiteminfo($(this),\"#{ajax_item_path(item)}\", \"#{item.id}\"); return false;")
+          = link_to(" #{item.name}", ajax_item_path(item), onclick: "getiteminfo($(this),\"#{ajax_item_path(item)}\", \"#{item.id}\"); return false;")
           .modalhtml
         td.col-md-4
           .mobilehide
             - item.tags.each do |t|
-              span.label style="background-color: #{t.color}"
+              span.label style="border-color: #{t.color}"
                 a href=paramslink('tag': t.id.to_s, add: true)
                   = t.name
         - if item.value < 0

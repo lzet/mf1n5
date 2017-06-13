@@ -24,7 +24,7 @@
     - if current_user.tags_count > 0
       .list-group-item.to-hide
         - current_user.sortedtags.each do |t|
-          span.label style="background-color: #{t.color}"
+          span.label style="border-color: #{t.color}"
             a href=paramslink('tag': t.id.to_s, add: true)
               = t.name
     br/

@@ -4,12 +4,12 @@ dl.dl-horizontal
     = "#{t('ui.label.title.wallet')}: "
   dd
     = @item.wallet.name
-    span.label.label-default= @item.wallet.currency
+    span.label= @item.wallet.currency
   dt
     = "#{t('ui.label.title.tags')}: "
   dd
     - @item.tags.each do |t|
-      span.label style="background-color: #{t.color}"
+      span.label style="border-color: #{t.color}"
         = t.name
   dt
     = "#{t('ui.label.title.amount')}: "

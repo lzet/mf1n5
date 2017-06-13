@@ -162,7 +162,13 @@ class MainPagesController < ApplicationController
       end
 
       res = []
-      dif = items.maximum(:created_at) - items.minimum(:created_at)
+      max = items.maximum(:created_at)
+      min = items.minimum(:created_at)
+      if max && min
+        dif = max - min
+      else
+        dif = 0
+      end
       if dif > 1.year
         dif = :year
         @title = t('ui.graph.title.yearly')

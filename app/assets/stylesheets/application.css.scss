@@ -75,6 +75,12 @@ body {
       }
     }
   }
+  .totaltxt {
+    font-size: 12px;
+  }
+  .totaltxt-sm {
+    font-size: 10px;
+  }
   #cellarea {
     float: left;
     background-color: white;
@@ -112,11 +118,24 @@ body {
 .label {
   display: inline-block;
   margin: 2px;
+  padding: .1em .3em .15em;
+  border-style: solid;
+  border-width: 2px;
+  color: black;
   a {
     color: black;
     opacity: 0.80;
     text-decoration: none;
-    text-shadow: 0 1px white, 1px 0 white, 0 -1px white, -1px 0 white, 1px 1px white, -1px -1px white;
+  }
+}
+.noborder {
+  border-style: none;
+  padding: .2em .6em .3em;
+}
+.badge {
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }
 .font-icon {

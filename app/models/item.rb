@@ -24,9 +24,20 @@ class Item < ApplicationRecord
     if hasfilter
       total = {}
       user.wallets.each do |w|
-        s = itemswfilter.where(wallet: w).sum(:value)
-        if s && s != 0
-          total[w] = s/100.0
+        s1 = itemswfilter.where(wallet: w).where('items.value > 0').sum(:value)
+        s2 = itemswfilter.where(wallet: w).where('items.value < 0').sum(:value)
+        if s1 && s1 != 0
+          s1 = s1/100.0
+        else
+          s1 = 0
+        end
+        if s2 && s2 != 0
+          s2 = s2/100.0
+        else
+          s2 = 0
+        end
+        if s1 != 0 || s2 != 0
+          total[w] = [s1, s2]
         end
       end
     end
