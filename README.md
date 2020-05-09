@@ -44,16 +44,6 @@ It's remake [MyFin v1](https://bitbucket.org/Pozadi/myfin/wiki/Home) application
 
 MF1n5 is released under the MIT license (LICENSE file).
 
-#### Demo
-
-[MF1n5 Demo](http://dev.lzet.name/mf1n5)  
-login: demo@dev.lzet.name  
-password: demoguest
-
-#### Donate
-
-[Donate Yandex, Visa, Mastercard, RusMobile](http://dev.lzet.name)
-
 
 ---------
 
@@ -103,14 +93,4 @@ password: demoguest
 #### Лицензия
 
 МИТ лицензия (файл LICENSE).
-
-#### Демо
-
-[MF1n5 Демо](http://dev.lzet.name/mf1n5)  
-логин: demo@dev.lzet.name  
-пароль: demoguest
-
-#### Пожертвование
-
-[Пожертвование Yandex, Visa, Mastercard, RusMobile](http://dev.lzet.name)
 
